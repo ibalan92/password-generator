@@ -97,10 +97,9 @@ function numOfCharacters(){
     }
     else if( numberOfCharacters > 128){
       numberOfCharacters = prompt("The number should be greater than 8 and lower than 128. Please input a new number")
-    }
-    else return numberOfCharacters;
+    } 
   }
-  console.log(numberOfCharacters)
+  return numberOfCharacters;
 }
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -110,19 +109,47 @@ function getPasswordOptions() {
   var special = confirm("Do you want special characters(£,$,%...) in your password?");
   var options = [];
   options.push(lower, upper, numeric, special);
-  console.log(options);
   return options;
   }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  var randomChar = arr[(Math.floor(Math.random() * arr.length))];
+  return randomChar;
 }
 
 // Function to generate password with user input
 function generatePassword() {
-  numOfCharacters()
-  getPasswordOptions()
+  var totalnumber =  numOfCharacters();
+  var options = getPasswordOptions();
+  var setOfCharacters = [];
+
+  //Populate the setOfCharacters array with the options chosen by the user
+  if (options[0]){
+    setOfCharacters.push(lowerCasedCharacters);
+  }
+  if (options[1]){
+    setOfCharacters.push(upperCasedCharacters);
+  }
+  if (options[2]) {
+    setOfCharacters.push(numericCharacters);
+  }
+  if (options[3]) {
+    setOfCharacters.push(specialCharacters);
+  }
+  var password = '';
+  
+  //Ensure at least one character of each chosen option is added to the password
+  for (var i = 0; i < setOfCharacters.length; i++) {
+    password += getRandom(setOfCharacters[i]);
+  }
+  //Fill the remaining string with random characters from the chosen option
+  for (var i = setOfCharacters.length; i < totalnumber; i++) {
+    var randomCharSet = getRandom(setOfCharacters);
+    password += getRandom(randomCharSet);
+  }
+  return password;
+
 }
 
 // Get references to the #generate element
@@ -139,16 +166,4 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
 
-//Press button -> Prompt "Please input a number"
-//User input value = store in a var and convert to number
-// if ( value <8 or value> 128)  -> prompt "Please input a valid number between 8 an 128"
-//else return input value 
-
-//Confirm lowercase or not by user input - save in var lowercase
-//Confirm uppercase or not by user input - save in var uppercase
-//Confirm numeric or not by user input - save in var numeric
-//Confirm special character or not by user - save in var specialcharacter
-
-//generatePassword
-//if 
 
