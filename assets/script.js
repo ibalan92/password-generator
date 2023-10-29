@@ -88,9 +88,23 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+function numOfCharacters(){
+  var numberOfCharacters = prompt("Please choose the number of characters for your password!")
+      numberOfCharacters = parseInt(numberOfCharacters);
+  while (numberOfCharacters < 8 || numberOfCharacters > 128){
+    if (numberOfCharacters < 8){
+      numberOfCharacters = prompt("The number should be greater than 8 and lower than 128. Please input a new number")
+    }
+    else if( numberOfCharacters > 128){
+      numberOfCharacters = prompt("The number should be greater than 8 and lower than 128. Please input a new number")
+    }
+    else return numberOfCharacters;
+  }
+  console.log(numberOfCharacters)
+}
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  
 }
 
 // Function for getting a random element from an array
@@ -100,7 +114,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-
+  numOfCharacters()
 }
 
 // Get references to the #generate element
