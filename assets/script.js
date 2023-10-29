@@ -101,6 +101,10 @@ function numOfCharacters(){
   }
   return numberOfCharacters;
 }
+
+function allAreFalse(arr) {
+  return arr.every(element => element === false);
+}
 // Function to prompt user for password options
 function getPasswordOptions() {
   var lower = confirm("Do you want lower case in your password?");
@@ -137,6 +141,12 @@ function generatePassword() {
   if (options[3]) {
     setOfCharacters.push(specialCharacters);
   }
+
+  if (setOfCharacters.length === 0) {
+    alert("You need to choose at least one option. Please try again, pressing Generate Password");
+    return ""; // Return an empty string to indicate an error
+  }
+
   var password = '';
   
   //Ensure at least one character of each chosen option is added to the password
@@ -145,8 +155,8 @@ function generatePassword() {
   }
   //Fill the remaining string with random characters from the chosen option
   for (var i = setOfCharacters.length; i < totalnumber; i++) {
-    var randomCharSet = getRandom(setOfCharacters);
-    password += getRandom(randomCharSet);
+    var randomChar = getRandom(setOfCharacters);
+    password += getRandom(randomChar);
   }
   return password;
 
