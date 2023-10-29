@@ -104,8 +104,15 @@ function numOfCharacters(){
 }
 // Function to prompt user for password options
 function getPasswordOptions() {
-  
-}
+  var lower = confirm("Do you want lower case in your password?");
+  var upper = confirm("Do you want upper case in your password?");
+  var numeric = confirm("Do you want numeric values in your password?");
+  var special = confirm("Do you want special characters(£,$,%...) in your password?");
+  var options = [];
+  options.push(lower, upper, numeric, special);
+  console.log(options);
+  return options;
+  }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
@@ -115,6 +122,7 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   numOfCharacters()
+  getPasswordOptions()
 }
 
 // Get references to the #generate element
